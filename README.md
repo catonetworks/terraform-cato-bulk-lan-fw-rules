@@ -76,3 +76,52 @@ JSON is a point-in-time tenant backup.
 - The CMA UI shows per-network-rule "Block Any" children and a "Default rules"
   section; these are UI-synthesized defaults the API does not return, so they
   never appear in exports and are not managed.
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
+| <a name="requirement_cato"></a> [cato](#requirement\_cato) | >= 1.3.1 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_cato"></a> [cato](#provider\_cato) | >= 1.3.1 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [cato_bulk_lf_move_rule.all_lan_fw_rules](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/bulk_lf_move_rule) | resource |
+| [cato_lf_sub_policy.sub_policies](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/lf_sub_policy) | resource |
+| [cato_socket_lan_firewall_rule.firewall_rules](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/socket_lan_firewall_rule) | resource |
+| [cato_socket_lan_network_rule.network_rules](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/socket_lan_network_rule) | resource |
+| [cato_socket_lan_section.sections](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/socket_lan_section) | resource |
+| [cato_socket_lan_section.sub_sections](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/socket_lan_section) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_lan_fw_rules_json_file_path"></a> [lan\_fw\_rules\_json\_file\_path](#input\_lan\_fw\_rules\_json\_file\_path) | Path to the LAN Firewall (socketLan) JSON export produced by `catocli export lan_fw_rules` (data.policy.socketLan.policy root). | `string` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_deployment_summary"></a> [deployment\_summary](#output\_deployment\_summary) | Counts of managed LAN firewall objects. |
+| <a name="output_firewall_rule_ids"></a> [firewall\_rule\_ids](#output\_firewall\_rule\_ids) | Map of '<network\_rule>::<firewall\_rule>' to rule id. |
+| <a name="output_network_rule_ids"></a> [network\_rule\_ids](#output\_network\_rule\_ids) | Map of network rule name to rule id. |
+| <a name="output_scope_rule_ids"></a> [scope\_rule\_ids](#output\_scope\_rule\_ids) | Map of sub-policy name to its SUB\_POLICY\_SCOPE rule id. |
+| <a name="output_section_ids"></a> [section\_ids](#output\_section\_ids) | Map of main section name to section id. |
+| <a name="output_sub_policy_ids"></a> [sub\_policy\_ids](#output\_sub\_policy\_ids) | Map of sub-policy name to sub-policy id. |
+| <a name="output_sub_section_ids"></a> [sub\_section\_ids](#output\_sub\_section\_ids) | Map of '<sub\_policy>::<section>' to section id. |
+| <a name="output_unordered_network_rules"></a> [unordered\_network\_rules](#output\_unordered\_network\_rules) | rules\_in\_sections rows excluded from cato\_bulk\_lf\_move\_rule (no managed section to order within). |
+<!-- END_TF_DOCS -->

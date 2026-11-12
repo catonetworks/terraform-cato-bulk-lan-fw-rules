@@ -345,6 +345,21 @@ locals {
 }
 
 # ───────────────────────────────────────────────────────────────────────────
+# Safety guard: network_rules_data covers firewall_rules too, since child
+# firewall rules nest inside each network rule (network_rules[].firewall_rules[])
+# rather than existing as a separate top-level list — zero network rules
+# necessarily means zero firewall rules as well.
+# ───────────────────────────────────────────────────────────────────────────
+resource "terraform_data" "guard_empty_policy" {
+  lifecycle {
+    precondition {
+      condition     = var.allow_empty_policy || length(local.network_rules_data) > 0
+      error_message = "Policy JSON contains 0 rules. If intentional (greenfield/teardown), set allow_empty_policy = true. A truncated or wrong-tenant export would otherwise destroy the entire live policy."
+    }
+  }
+}
+
+# ───────────────────────────────────────────────────────────────────────────
 # Sections: main sections at the policy root; sub-sections created inside
 # their sub-policy by pointing at.ref at the sub-policy id (the provider's
 # documented mechanism). Ordering is handled by cato_bulk_lf_move_rule.

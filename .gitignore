@@ -41,4 +41,22 @@ terraform.rc
 
 # Optional: ignore plan files saved before destroying Terraform configuration
 # Uncomment the line below if you want to ignore planout files.
-# planout
+# planout# --- Additional ignores: local lockfile + hidden/sensitive files ---
+# Local provider lock file (these modules pin via versions.tf; never commit a
+# lock from a local/prerelease provider build).
+.terraform.lock.hcl
+
+# tfvars may contain secrets (re-stated; duplicate-safe for repos already covering it)
+*.tfvars
+*.tfvars.json
+
+# OS / editor hidden files
+.DS_Store
+*.swp
+*~
+
+# Secrets / credentials / env
+.env
+*.env
+*.pem
+*.key

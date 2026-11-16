@@ -3,7 +3,7 @@ terraform {
   required_providers {
     cato = {
       source  = "catonetworks/cato"
-      version = ">= 1.5.0-prerelease.3"
+      version = ">= 2.0.0-prerelease.1"
     }
   }
 }

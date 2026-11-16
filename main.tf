@@ -433,6 +433,10 @@ resource "cato_socket_lan_network_rule" "network_rules" {
   )
 
   rule = local.network_rule_bodies[each.key]
+
+  lifecycle {
+    ignore_changes = [at] # create-only positioning; ordering owned by the move resource
+  }
 }
 
 resource "cato_socket_lan_firewall_rule" "firewall_rules" {
@@ -445,6 +449,10 @@ resource "cato_socket_lan_firewall_rule" "firewall_rules" {
   }
 
   rule = local.firewall_rule_bodies[each.key]
+
+  lifecycle {
+    ignore_changes = [at] # create-only positioning; ordering owned by the move resource
+  }
 }
 
 # ───────────────────────────────────────────────────────────────────────────

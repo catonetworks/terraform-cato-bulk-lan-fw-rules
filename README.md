@@ -1,10 +1,8 @@
 # terraform-cato-bulk-lan-fw-rules
 
 > [!IMPORTANT]
-> **Early access (beta).** This module targets the Cato Terraform provider
-> `2.0.0-prerelease.1`, an **early-access / beta** release. A general-availability
-> (GA) release is planned shortly, following the current evaluation period.
-> Until GA ships, pin the exact prerelease version.
+> This module targets the Cato Terraform provider `2.0.0` (general
+> availability). Ensure your configuration resolves provider `2.0.0` or newer.
 
 
 Bulk-manages the Cato **LAN Firewall (socketLan)** policy from a single JSON
@@ -324,13 +322,13 @@ output "unordered_rules" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
-| <a name="requirement_cato"></a> [cato](#requirement\_cato) | >= 2.0.0-prerelease.1 |
+| <a name="requirement_cato"></a> [cato](#requirement\_cato) | >= 2.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_cato"></a> [cato](#provider\_cato) | >= 2.0.0-prerelease.1 |
+| <a name="provider_cato"></a> [cato](#provider\_cato) | >= 2.0.0 |
 
 ## Modules
 

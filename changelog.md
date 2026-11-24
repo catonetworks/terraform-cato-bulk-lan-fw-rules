@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.2 (2026-11-24)
+
+### Changes
+- Require the Cato provider `>= 2.0.0` (now GA on the Terraform Registry).
+- README: replaced the early-access/beta provider notice with a GA notice.
+
 ## 0.0.1 (2026-11-04)
 
 ### Features
